@@ -1,26 +1,33 @@
 import { Post, User } from "@/app/interfaces";
 import { GET as getUsers } from "../users/route";
 
-export const GET = async (req : Request, res : Response) => {
+export const GET = async (req : Request, 
+    context?: { params?: { userId?: string } },
+    res? : Response) => {
     try {
+        const userId = context?.params?.userId;
         const url = new URL(req.url);
         const page = parseInt(url.searchParams.get("page") || "1");
         const limit = parseInt(url.searchParams.get("limit") || "10");
         const start = (page - 1) * limit;
         const end = start + limit;
         const response = await fetch("https://jsonplaceholder.typicode.com/posts")
-        const posts = await response.json();
-        const paginatedPosts = posts.slice(start, end);
+        const posts : Post[] = await response.json();
+        const filteredPosts = userId ? posts.filter(post => post.userId === userId) : posts;
+        const paginatedPosts = filteredPosts.slice(start, end);
 
-        const usersResponse = await getUsers();
-        const users = await usersResponse.json();
+        let users : User[] = [];
+        if (!userId) {
+            const usersResponse = await getUsers();
+            users = await usersResponse.json();
+        }
 
-        const paginatedPostsWithAuthors = paginatedPosts.map((post: Post) => {
-            const author = users.find((user: User) => user.id === post.userId);
+        const paginatedPostsWithAuthors = paginatedPosts.map(post => {
+            const author = userId ? { id: post.userId } : users.find(user => user.id === post.userId);
             return { ...post, author };
         });
 
-        const totalPosts = posts.length; 
+        const totalPosts = filteredPosts.length; 
         const responseData = {
             responsePosts: paginatedPostsWithAuthors,
             totalPosts: totalPosts,

@@ -12,10 +12,10 @@ const useComments = (initialComments : Comments[]) => {
         }
 
         const newComment = {
-            postId: 1, // You would pass the postId as needed
+            postId: 1,
             name: commenterName,
             body: commentText,
-            email: "newcommenter@example.com", // Placeholder email
+            email: "newcommenter@example.com",
         };
 
         const response = await fetch(`https://jsonplaceholder.typicode.com/comments`, {
@@ -40,7 +40,6 @@ const useComments = (initialComments : Comments[]) => {
         });
 
         if (response.ok) {
-            // Remove the comment from the state
             setUpdatedComments((prev) => prev.filter((comment) => comment.id !== commentId));
         } else {
             alert("Error deleting comment");
