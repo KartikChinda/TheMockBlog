@@ -1,7 +1,10 @@
-export const GET = async (req: Request, {params}: {params: {userId: string}}, res: Response) => {
+export const GET = async (
+    req?: Request,
+    context?: { params?: { userId?: string } }
+) => {
     try {
         
-        const { userId } = params; 
+        const userId  = context?.params?.userId; 
         const response = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`);
         
         if (!response.ok) {

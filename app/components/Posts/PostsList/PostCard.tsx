@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import { Post as PostInterface } from "@/app/interfaces";
-const PostCard = ({ post }: { post: PostInterface }) => {
+import { Post } from "@/app/interfaces";
+const PostCard = ({ post }: { post: Post }) => {
   return (
     <div
       key={post.id}
@@ -13,7 +13,7 @@ const PostCard = ({ post }: { post: PostInterface }) => {
       <p className="text-gray-700 font-subtext-heebo font-light">
         {post.body.slice(0, 100)}...
       </p>
-      <p className="mt-2 font-subtext-heebo">By: {post.userId}</p>
+      <p className="mt-2 font-subtext-heebo">By: {post.author.name}</p>
       <Link
         className="absolute bottom-2 left-6 border-2 border-textBrown hover:text-textBrown hover:bg-beigeLight bg-textBrown text-beigeLight rounded-xl duration-200 px-4 py-2 text-sm"
         href={`/posts/${post.id}`}

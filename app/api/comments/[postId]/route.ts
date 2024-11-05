@@ -1,6 +1,9 @@
-export const GET = async (req: Request, {params} : {params: {postId : string}}, res: Response) => {
+export const GET = async (
+    req?: Request,
+    context?: { params?: { postId?: string } }
+) => {
     try {
-        const { postId } = params;  
+       const postId = context?.params?.postId;
         
         const response = await fetch(`https://jsonplaceholder.typicode.com/comments?postId=${postId}`);
         const comments = await response.json();

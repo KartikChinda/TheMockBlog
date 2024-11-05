@@ -1,3 +1,6 @@
+import { Post, User } from "@/app/interfaces";
+import { GET as getUsers } from "../users/route";
+
 export const GET = async (req : Request, res : Response) => {
     try {
         const url = new URL(req.url);
@@ -8,9 +11,18 @@ export const GET = async (req : Request, res : Response) => {
         const response = await fetch("https://jsonplaceholder.typicode.com/posts")
         const posts = await response.json();
         const paginatedPosts = posts.slice(start, end);
+
+        const usersResponse = await getUsers();
+        const users = await usersResponse.json();
+
+        const paginatedPostsWithAuthors = paginatedPosts.map((post: Post) => {
+            const author = users.find((user: User) => user.id === post.userId);
+            return { ...post, author };
+        });
+
         const totalPosts = posts.length; 
         const responseData = {
-            responsePosts: paginatedPosts,
+            responsePosts: paginatedPostsWithAuthors,
             totalPosts: totalPosts,
         }
         return new Response(JSON.stringify(responseData), {
