@@ -40,10 +40,11 @@ const Posts = () => {
   console.log(posts);
 
   return (
-    <div>
-      <h1 className="text-4xl font-bold font-heading-playfair mb-8">
+    <div className="mt-10 ">
+      <h1 className="text-4xl font-bold font-heading-playfair mb-2">
         All Posts
       </h1>
+      <hr className="w-[60%] mb-20 border-textBrown" />
       {loading ? (
         <div className="w-[100vw] h-[100vh] flex justify-center items-center">
           <FadeLoader color="black" loading={loading} />
@@ -53,7 +54,7 @@ const Posts = () => {
           {error}
         </div>
       ) : (
-        <PostsList />
+        posts && posts.length > 0 && <PostsList posts={posts} />
       )}
       {/* Pagination Controls */}
       <div className="flex justify-between mt-4 items-center">
@@ -64,7 +65,9 @@ const Posts = () => {
         >
           <FaArrowLeft />
         </button>
-        <span>Page {page}</span>
+        <span className="font-bold font-subtext-heebo uppercase">
+          Page {page}
+        </span>
         <button
           onClick={() => setPage((prev) => prev + 1)}
           disabled={posts.length < limit} // Disable if there are fewer posts than limit
