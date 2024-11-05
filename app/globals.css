@@ -6,6 +6,11 @@
 @tailwind utilities;
 
 
+.hero-subtext {
+  @apply text-center lg:text-left
+}
+
+
 ::-webkit-scrollbar {
   width: 6px;
 }
