@@ -1,19 +1,17 @@
 import { Post, User } from "@/app/interfaces";
 import { GET as getUsers } from "../users/route";
 
-export const GET = async (req : Request, 
-    context?: { params?: { userId?: string } },
-    res? : Response) => {
+export const GET = async (req : Request, res? : Response) => {
     try {
-        const userId = context?.params?.userId;
         const url = new URL(req.url);
         const page = parseInt(url.searchParams.get("page") || "1");
         const limit = parseInt(url.searchParams.get("limit") || "10");
+        const userId = url.searchParams.get("userId");
         const start = (page - 1) * limit;
         const end = start + limit;
         const response = await fetch("https://jsonplaceholder.typicode.com/posts")
         const posts : Post[] = await response.json();
-        const filteredPosts = userId ? posts.filter(post => post.userId === userId) : posts;
+        const filteredPosts = userId ? posts.filter(post => parseInt(post.userId) === parseInt(userId)) : posts;
         const paginatedPosts = filteredPosts.slice(start, end);
 
         let users : User[] = [];
