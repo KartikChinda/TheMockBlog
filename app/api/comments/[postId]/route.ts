@@ -1,6 +1,7 @@
 export const GET = async (
     req: Request,
-    context?: { params?: { postId?: string } }
+    res: Response,
+    context?: { params?: { postId?: string } }, 
 ) => {
     try {
        const postId = context?.params?.postId;

@@ -1,7 +1,7 @@
 import { GET as getComments } from "../../comments/[postId]/route";
 import { GET as getUser } from "../../users/[userId]/route";
 
-export const GET = async (req: Request, { params }: { params: { postId: string } }) => {
+export const GET = async (req: Request, { params }: { params: { postId: string } }, res: Response) => {
     try {
         // const url = new URL(req.url);
         // const postId = url.searchParams.get("postId");
@@ -12,11 +12,11 @@ export const GET = async (req: Request, { params }: { params: { postId: string }
         }
         const post = await response.json();
          // Fetch the author
-         const authorResponse = await getUser(req, { params: { userId: post.userId } });
+         const authorResponse = await getUser(req, new Response(), { params: { userId: post.userId } });
          const author = await authorResponse.json();
  
          // Fetch the comments
-         const commentsResponse = await getComments(req, { params: { postId: post.id } });
+         const commentsResponse = await getComments(req, new Response(), { params: { postId: post.id } });
          const comments = await commentsResponse.json();
 
         const postWithInfo = {

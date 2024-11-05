@@ -1,5 +1,6 @@
 export const GET = async (
     req: Request,
+    res: Response, 
     context?: { params?: { userId?: string } }
 ) => {
     try {

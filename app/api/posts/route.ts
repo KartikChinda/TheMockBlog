@@ -1,7 +1,7 @@
 import { Post, User } from "@/app/interfaces";
 import { GET as getUsers } from "../users/route";
 
-export const GET = async (req : Request, res? : Response) => {
+export const GET = async (req : Request, res : Response) => {
     try {
         const url = new URL(req.url);
         const page = parseInt(url.searchParams.get("page") || "1");
@@ -14,7 +14,7 @@ export const GET = async (req : Request, res? : Response) => {
         const filteredPosts = userId ? posts.filter(post => parseInt(post.userId) === parseInt(userId)) : posts;
         const paginatedPosts = filteredPosts.slice(start, end);
 
-        const usersResponse = await getUsers(); 
+        const usersResponse = await getUsers(req, new Response()); 
         const users: User[] = await usersResponse.json();
         
 
