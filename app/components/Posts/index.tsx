@@ -40,7 +40,7 @@ const Posts = () => {
   console.log(posts);
 
   return (
-    <div className="mt-10 ">
+    <div className="mt-4 ">
       <h1 className="text-4xl font-bold font-heading-playfair mb-2">
         All Posts
       </h1>

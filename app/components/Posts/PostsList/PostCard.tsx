@@ -5,7 +5,7 @@ const PostCard = ({ post }: { post: PostInterface }) => {
   return (
     <div
       key={post.id}
-      className="border rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 w-[370px] h-[320px] p-8 flex flex-col justify-start items-start bg-bgBeige relative"
+      className="border rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 w-[370px] h-[330px] p-8 flex flex-col justify-start items-start bg-bgBeige relative"
     >
       <h2 className="text-xl font-semibold mb-2 font-subtext-heebo uppercase ">
         {post.title}
@@ -15,7 +15,7 @@ const PostCard = ({ post }: { post: PostInterface }) => {
       </p>
       <p className="mt-2 font-subtext-heebo">By: {post.userId}</p>
       <Link
-        className="absolute bottom-2 left-6 border-2 border-textBrown hover:bg-textBrown hover:text-beigeLight rounded-xl duration-200 px-4 py-2 text-sm"
+        className="absolute bottom-2 left-6 border-2 border-textBrown hover:text-textBrown hover:bg-beigeLight bg-textBrown text-beigeLight rounded-xl duration-200 px-4 py-2 text-sm"
         href="/"
       >
         {" "}
