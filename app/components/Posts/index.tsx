@@ -14,6 +14,7 @@ const Posts = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setloading] = useState(true);
+  const [totalPages, settotalPages] = useState(0);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -23,6 +24,7 @@ const Posts = () => {
         const userId = selectedUserName
           ? users.find((user) => user.name === selectedUserName)?.id
           : null;
+
         const response = await fetch(
           `api/posts?page=${page}&limit=${limit}${
             userId ? `&userId=${userId}` : ""
@@ -35,6 +37,7 @@ const Posts = () => {
         console.log("Logging response: ", responsePosts, totalPosts);
         settotalPosts(totalPosts);
         setPosts(responsePosts);
+        settotalPages(Math.ceil(totalPosts / limit));
       } catch (error) {
         console.error("Error fetching posts:", error);
         setError("Failed to fetch posts. Please try again.");
@@ -106,11 +109,11 @@ const Posts = () => {
           <FaArrowLeft />
         </button>
         <span className="font-bold font-subtext-heebo uppercase">
-          Page {page}
+          Page {page} of {totalPages}
         </span>
         <button
           onClick={() => setPage((prev) => prev + 1)}
-          disabled={posts.length < limit} // Disable if there are fewer posts than limit
+          disabled={page >= totalPages}
           className="pagination-buttons"
         >
           <FaArrowRight />
