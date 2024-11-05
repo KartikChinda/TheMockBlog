@@ -14,6 +14,10 @@
   @apply px-5 py-3 bg-[#F2EBE0] text-textBrown rounded-xl disabled:bg-gray-300 font-subtext-heebo font-semibold
 }
 
+.buttons {
+  @apply border-2 border-textBrown hover:text-textBrown hover:bg-beigeLight bg-textBrown text-beigeLight rounded-xl duration-200 px-4 py-2 text-sm
+}
+
 ::-webkit-scrollbar {
   width: 6px;
 }

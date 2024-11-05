@@ -1,9 +1,13 @@
 "use client";
 import Loader from "@/app/components/Loader";
+import AuthorDetails from "@/app/components/PostLayout/AuthorDetails";
+import PostDetails from "@/app/components/PostLayout/PostDetails";
+import CommentDetails from "@/app/components/PostLayout/CommentDetails";
 import { Comments, Post, User } from "@/app/interfaces";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import React, { useState, useEffect } from "react";
+import { FaArrowLeft } from "react-icons/fa";
 
 const page = () => {
   const { postId } = useParams();
@@ -43,38 +47,14 @@ const page = () => {
     );
   return (
     <div className="p-8 overflow-hidden">
-      {post && (
-        <div className="flex flex-col gap-2">
-          <div className="text-3xl font-bold font-heading-playfair mb-4 uppercase">
-            {post.title}
-          </div>
-          <div className=" font-subtext-heebo text-gray-950">{post.body}</div>
-        </div>
-      )}
-      {author && (
-        <div className="mt-10">
-          This post was written by:
-          <p className="text-textBrown font-extrabold text-xl font-subtext-heebo">
-            {author.name}
-          </p>
-          <div className="font-subtext-heebo font-light flex flex-col text-sm mt-2">
-            <div>
-              Reach out to them here:{" "}
-              <span className="font-bold text-lg">{author.email}</span>
-            </div>
-            <div>
-              Website:{" "}
-              <Link
-                href={`${author.website}`}
-                target="__blank"
-                className="font-bold text-lg"
-              >
-                {author.website}
-              </Link>
-            </div>
-          </div>
-        </div>
-      )}
+      <div className="mb-10">
+        <Link href={"/"}>
+          <FaArrowLeft className=" inline" /> Back
+        </Link>
+      </div>
+      {post && <PostDetails post={post} />}
+      {author && <AuthorDetails author={author} />}
+      {comments && <CommentDetails comments={comments} />}
     </div>
   );
 };

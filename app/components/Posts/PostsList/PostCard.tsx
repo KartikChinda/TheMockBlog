@@ -15,7 +15,7 @@ const PostCard = ({ post }: { post: Post }) => {
       </p>
       <p className="mt-2 font-subtext-heebo">By: {post.author.name}</p>
       <Link
-        className="absolute bottom-2 left-6 border-2 border-textBrown hover:text-textBrown hover:bg-beigeLight bg-textBrown text-beigeLight rounded-xl duration-200 px-4 py-2 text-sm"
+        className="absolute bottom-2 left-6 buttons"
         href={`/posts/${post.id}`}
       >
         {" "}
