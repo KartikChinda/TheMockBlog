@@ -10,6 +10,9 @@
   @apply text-center lg:text-left
 }
 
+.pagination-buttons {
+  @apply px-5 py-3 bg-[#F2EBE0] text-textBrown rounded-xl disabled:bg-gray-300 font-subtext-heebo font-semibold
+}
 
 ::-webkit-scrollbar {
   width: 6px;

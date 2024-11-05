@@ -4,7 +4,7 @@ import BlogHero from "@/public/blogHero.jpg";
 
 const Hero = () => {
   return (
-    <div className="min-h-[80vh] lg:flex lg:justify-around lg:items-center p-8">
+    <div className="min-h-[80vh] lg:flex lg:justify-around lg:items-center">
       <div className="w-full flex justify-center items-center lg:justify-start lg:items-start flex-col">
         <div className=" font-heading-playfair  font-extrabold text-[45px] lg:text-8xl mb-8">
           The Mock Blog
@@ -21,6 +21,7 @@ const Hero = () => {
         <Image
           src={BlogHero}
           alt="Notebook"
+          priority
           width={300}
           height={300}
           className=" rounded-2xl border-8 border-[#dbb0a15b]"

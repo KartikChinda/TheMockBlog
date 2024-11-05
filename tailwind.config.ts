@@ -10,7 +10,8 @@ const config: Config = {
     extend: {
       colors: {
         bgBeige: "#FAF7F2",
-        beigeLight: "#FCFAF6"
+        beigeLight: "#FCFAF6",
+        textBrown: "#484543",
       },
       fontFamily : {
         "subtext-heebo": ["Heebo"],
