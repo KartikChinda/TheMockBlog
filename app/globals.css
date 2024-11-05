@@ -1,5 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Fascinate&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(243, 229, 192);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #533535;
+  border-radius: 20px;
+  border: transparent;
+}

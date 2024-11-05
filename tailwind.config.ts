@@ -12,8 +12,12 @@ const config: Config = {
         bgBeige: "#FAF7F2",
         beigeLight: "#FCFAF6"
       },
+      fontFamily : {
+        "subtext-heebo": ["Heebo"],
+        "heading-playfair": ['Playfair Display']
+      },
     },
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar")],
 };
 export default config;
