@@ -1,10 +1,10 @@
-import { GET as getComments } from "../../comments/[postId]/route";
-import { GET as getUser } from "../../users/[userId]/route";
+// this is throwing a typescript error which is extremely interesting, I'll have to take a look at this.
+// import { GET as getComments } from "../../comments/[postId]/route";
+// import { GET as getUser } from "../../users/[userId]/route";
 
-export const GET = async (req: Request, { params }: { params: { postId: string } }, res: Response) => {
+
+export const GET = async (req: Request, { params }: { params: { postId: string } }, res: Response ) => {
     try {
-        // const url = new URL(req.url);
-        // const postId = url.searchParams.get("postId");
         const { postId } = params;
         const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`);      
         if (!response.ok) {
@@ -12,11 +12,11 @@ export const GET = async (req: Request, { params }: { params: { postId: string }
         }
         const post = await response.json();
          // Fetch the author
-         const authorResponse = await getUser(req, new Response(), { params: { userId: post.userId } });
+         const authorResponse =  await fetch(`https://jsonplaceholder.typicode.com/users/${post.userId}`);
          const author = await authorResponse.json();
  
          // Fetch the comments
-         const commentsResponse = await getComments(req, new Response(), { params: { postId: post.id } });
+         const commentsResponse = await fetch(`https://jsonplaceholder.typicode.com/comments?postId=${postId}`);
          const comments = await commentsResponse.json();
 
         const postWithInfo = {

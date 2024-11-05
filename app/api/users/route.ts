@@ -1,4 +1,4 @@
-export const GET = async (req: Request, res: Response) => {
+export const GET = async (req: Request | undefined, res: Response | undefined) => {
     try {
         const response = await fetch("https://jsonplaceholder.typicode.com/users");
         const users = await response.json();
