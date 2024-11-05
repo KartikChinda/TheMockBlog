@@ -14,14 +14,12 @@ export const GET = async (req : Request, res? : Response) => {
         const filteredPosts = userId ? posts.filter(post => parseInt(post.userId) === parseInt(userId)) : posts;
         const paginatedPosts = filteredPosts.slice(start, end);
 
-        let users : User[] = [];
-        if (!userId) {
-            const usersResponse = await getUsers();
-            users = await usersResponse.json();
-        }
+        const usersResponse = await getUsers(); 
+        const users: User[] = await usersResponse.json();
+        
 
         const paginatedPostsWithAuthors = paginatedPosts.map(post => {
-            const author = userId ? { id: post.userId } : users.find(user => user.id === post.userId);
+            const author = users.find(user => user.id === post.userId);
             return { ...post, author };
         });
 
