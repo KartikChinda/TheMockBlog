@@ -1,4 +1,4 @@
-Fire up the app here: 
+Fire up the app here: https://the-mock-blog.vercel.app/
 
 
 Want to work on the app locally? No worries. 
