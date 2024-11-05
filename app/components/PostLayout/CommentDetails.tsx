@@ -19,10 +19,6 @@ const CommentDetails = ({ comments }: { comments: Comments[] }) => {
   return (
     <>
       <div className="mt-20">
-        <div className="text-2xl font-semibold mt-6 mb-2 font-subtext-heebo">
-          Comments:
-        </div>
-
         <form onSubmit={addComment} className="my-4">
           <h4 className="text-lg font-semibold mb-2">Your comment:</h4>
           <input
@@ -44,6 +40,10 @@ const CommentDetails = ({ comments }: { comments: Comments[] }) => {
             Submit
           </button>
         </form>
+
+        <div className="text-2xl font-semibold mt-10 mb-6 font-subtext-heebo">
+          Here's what others are saying:
+        </div>
         <ul className="mb-4">
           {updatedComments.map((comment) => (
             <li
@@ -54,7 +54,7 @@ const CommentDetails = ({ comments }: { comments: Comments[] }) => {
               <p>{comment.body}</p>
               <button
                 onClick={() => handleDeleteComment(comment.id)}
-                className="text-red-500 mt-1"
+                className="text-red-800 mt-1"
               >
                 <FaTrash />
               </button>
